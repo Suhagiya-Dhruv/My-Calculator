@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+    <style>
+        .body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-style: double;
+            border-radius: 10px;
+        }
+        
+        input {
+            height: 45px;
+            width: 310px;
+            font-size: 30px;
+            margin: 20px;
+            text-align: right;
+            border: none;
+            font-weight: bold;
+            background-color: white;
+            border-radius: 10px;
+            border-bottom: 2px double black;
+            border-top: 2px double black;
+        }
+        
+        td button {
+            display: inline-block;
+            margin: 20px;
+            height: 70px;
+            width: 70px;
+            font-size: 30px;
+            font-weight: 900;
+            outline: none;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-bottom: 2px double blue;
+        }
+        
+        #clr {
+            margin-top: 20px;
+            height: 70px;
+            width: 70px;
+            font-size: 30px;
+            font-weight: 900;
+            outline: none;
+            border: none;
+            background-color: rgba(240, 57, 57, 0.5);
+            border-radius: 50%;
+            border-bottom: 2px double blue;
+        }
+        
+        #clr:hover {
+            border: 2px solid black;
+            background-color: red;
+        }
+        
+        button:hover {
+            border: 2px solid black;
+            background-color: aqua;
+        }
+        
+        .top {
+            background-color: rgba(39, 29, 29, 0.116);
+        }
+        
+        .bottom {
+            background-color: rgba(177, 201, 91, 0.116);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="top">
+            <input type="text" id="input">
+            <button id="clr">C</button>
+        </div>
+
+        <div class="bottom">
+            <table>
+                <tr>
+                    <td><button id="block9">9</button></td>
+                    <td><button id="block8">8</button></td>
+                    <td><button id="block7">7</button></td>
+                    <td><button id="divide">/</button></td>
+                </tr>
+                <tr>
+                    <td><button id="block4">4</button></td>
+                    <td><button id="block5">5</button></td>
+                    <td><button id="block6">6</button></td>
+                    <td><button id="multiply">*</button></td>
+                </tr>
+                <tr>
+                    <td><button id="block1">1</button></td>
+                    <td><button id="block2">2</button></td>
+                    <td><button id="block3">3</button></td>
+                    <td><button id="plus">+</button></td>
+                </tr>
+                <tr>
+                    <td><button id="dot">.</button></td>
+                    <td><button id="block0">0</button></td>
+                    <td><button id="result">=</button></td>
+                    <td><button id="minus">-</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    var btn = document.querySelectorAll('button');
+    var buttontext = '';
+    var screenValue = '';
+    var screen = document.getElementById('input');
+    for (var item of btn) {
+        item.addEventListener('click', (e) => {
+            buttontext = e.target.innerText;
+            if (buttontext == '=') {
+                screen.value = eval(screenValue);
+                screenValue = "";
+            } else if (buttontext == 'C') {
+                screenValue = "";
+                screen.value = screenValue;
+            } else {
+                screenValue += buttontext;
+                screen.value = screenValue;
+            }
+        })
+    }
+</script>
+
+</html>
